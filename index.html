@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rise Music Mag — Musique, artistes et actualité musicale</title>
+<meta name="description" content="Rise Music Mag est un média musical indépendant qui découvre de nouveaux talents et suit l'actualité des artistes confirmés. Clips, interviews et culture musicale, pop, dance et au-delà.">
+<meta property="og:title" content="Rise Music Mag — Média musical indépendant">
+<meta property="og:description" content="Découvertes musicales, artistes indépendants et actualité des artistes confirmés. Pop, afro, dance, indie et hybrid pop.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://risemusicmag.fr">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rise Music Mag">
+<meta name="twitter:description" content="Musique, artistes et actualité musicale — découvertes et talents confirmés.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Rise Music Mag">
+<link rel="canonical" href="https://risemusicmag.fr">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.youtube.com">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect width='48' height='48' rx='8' fill='%230A0A0F'/><text x='4' y='34' font-family='serif' font-weight='900' font-size='28' fill='%23C8A44E'>R</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0A0F;--bg2:#101018;--card:#14141E;--gold:#C8A44E;--gold2:#E8C46A;--paper:#E8E2D4;--paper2:#DDD5C2;--ink:#0A0A0F;--line:rgba(240,237,230,.08);--txt:#F0EDE6;--txt2:rgba(240,237,230,.65);--muted:rgba(240,237,230,.38);--r:2px;--nav:64px;--green:#3ECFA0;--pink:#E85D9B;--blue:#5BA4E6;--purple:#8B6CC1;--cyan:#4FD8E0;--pop:var(--pink);--afro:var(--green);--dance:var(--cyan);--indie:var(--blue);--hybrid:var(--purple)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:"Inter",system-ui;background:var(--bg);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:40px;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
+@keyframes gradMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulseText{0%,100%{opacity:.5}50%{opacity:1}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-zoom{opacity:0;transform:scale(1.06);transition:opacity .7s ease,transform .9s cubic-bezier(.22,1,.36,1)}
+.reveal-zoom.visible{opacity:1;transform:scale(1)}
+.reveal-side{opacity:0;transform:translateX(-32px);transition:opacity .6s ease,transform .6s cubic-bezier(.22,1,.36,1)}
+.reveal-side.visible{opacity:1;transform:translateX(0)}
+.reveal-line{transform:scaleX(0);transform-origin:left;transition:transform .8s cubic-bezier(.22,1,.36,1)}
+.reveal-line.visible{transform:scaleX(1)}
+.reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}.reveal-delay-4{transition-delay:.4s}.reveal-delay-5{transition-delay:.5s}
+.page{display:none}.page.active{display:block;animation:fadeUp .5s ease}
+.article-page{display:none}.article-page.active{display:block;animation:fadeUp .4s ease}
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:1000;background:rgba(10,10,15,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);transition:background .3s}
+.nav.scrolled{background:rgba(10,10,15,.97)}
+.nav-in{max-width:1200px;height:100%;margin:0 auto;padding:0 18px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none}
+.logo-text{display:flex;flex-direction:column;align-items:flex-start;gap:3px;line-height:1}
+.logo-symbol{width:30px;height:30px;flex-shrink:0;transition:transform .3s}
+.logo:hover .logo-symbol{transform:scale(1.08)}
+.logo-rise{font-family:"Roboto Condensed","Arial Narrow","Helvetica Neue Condensed","DejaVu Sans Condensed",Arial,sans-serif;font-weight:900;font-size:1.7rem;color:var(--txt);letter-spacing:.08em;line-height:1;transition:all .3s}
+.logo-bar{display:block;width:100%;height:1.5px;background:linear-gradient(90deg,var(--gold),transparent)}
+.logo-sub{font-family:"Inter",sans-serif;font-size:.46rem;font-weight:700;color:var(--gold);letter-spacing:.28em;text-transform:uppercase}
+.logo:hover .logo-rise{background:linear-gradient(135deg,#C8A44E,#E8C46A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.links{display:flex;gap:4px;list-style:none;align-items:center}
+.links a{font-size:.74rem;font-weight:600;letter-spacing:.04em;color:var(--txt2);padding:6px 12px;transition:color .2s,background .2s;cursor:pointer}
+.links a:hover,.links a.current{color:var(--txt);background:rgba(255,255,255,.05)}
+.cta{padding:8px 16px!important;background:var(--gold)!important;color:#000!important;font-weight:700!important;letter-spacing:.04em!important;transition:all .2s!important}
+.cta:hover{background:var(--gold2)!important;transform:translateY(-1px)!important;box-shadow:0 4px 20px rgba(200,164,78,.35)!important}
+.burger{display:none;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:none;cursor:pointer;position:relative;transition:border-color .2s;flex-shrink:0}
+.burger:hover{border-color:var(--gold)}
+.burger span{position:absolute;left:10px;width:18px;height:2px;background:var(--txt);transition:.25s;border-radius:2px}
+.burger span:nth-child(1){top:13px}.burger span:nth-child(2){top:18px}.burger span:nth-child(3){top:23px}
+.burger.open span:nth-child(1){transform:translateY(5px) rotate(45deg)}.burger.open span:nth-child(2){opacity:0;transform:translateX(6px)}.burger.open span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+.mnav{position:fixed;inset:0;background:#0A0A0F;z-index:2000;transform:translateX(100%);transition:.3s cubic-bezier(.4,0,.2,1);padding-top:var(--nav);overflow-y:auto}
+.mnav.open{transform:translateX(0)}
+.mnav-logo{padding:20px 24px 0;margin-bottom:8px}
+.mnav a{display:block;padding:18px 24px;font-size:1.1rem;font-weight:800;color:#fff;border-bottom:1px solid #1a1a24;transition:color .2s,padding-left .2s;cursor:pointer}
+.mnav a:hover{color:var(--gold);padding-left:32px}
+.hero{min-height:82vh;display:grid;place-items:center;padding:100px 20px 60px;text-align:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 70% 50% at 50% 40%,rgba(200,164,78,.06) 0%,transparent 70%),radial-gradient(ellipse 55% 45% at 80% 15%,rgba(139,108,193,.05) 0%,transparent 70%)}
+.hero-content{position:relative;z-index:1;animation:fadeUp .8s ease both;width:100%;max-width:780px}
+.kick{display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border-left:2px solid var(--gold);background:rgba(200,164,78,.08);color:var(--gold);font-size:.64rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:22px}
+.kick-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease infinite}
+.hero h1{font-family:"Roboto Condensed","Arial Narrow","Helvetica Neue Condensed","DejaVu Sans Condensed",Arial,sans-serif;font-weight:900;font-size:clamp(2rem,9vw,6.2rem);line-height:1.05;margin-bottom:18px;letter-spacing:.01em;transform:scaleX(.88);transform-origin:center;max-width:100%;overflow-wrap:break-word;word-break:break-word}
+.hero h1 em{font-style:normal;color:var(--gold);background:linear-gradient(135deg,#C8A44E,#E8C46A,#C8A44E);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradMove 4s linear infinite}
+.hero p{max-width:480px;margin:0 auto 28px;color:var(--txt2);font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:1.15rem;line-height:1.5}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{padding:13px 24px;font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid transparent;cursor:pointer;transition:all .25s;display:inline-flex;align-items:center;gap:8px}
+.btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;box-shadow:0 4px 24px rgba(200,164,78,.2);position:relative;overflow:hidden}
+.btn.gold::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.4) 50%,transparent 70%);transform:translateX(-120%);transition:transform .6s ease}
+.btn.gold:hover{background:linear-gradient(135deg,var(--gold2),var(--gold));transform:translateY(-2px);box-shadow:0 10px 36px rgba(200,164,78,.4)}
+.btn.gold:hover::before{transform:translateX(120%)}
+.btn.line{background:none;border-color:rgba(255,255,255,.15);color:var(--txt)}
+.btn.line:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+section{padding:70px 20px;scroll-margin-top:var(--nav)}
+.page-top{padding-top:110px}
+.wrap{max-width:1100px;margin:0 auto}
+.head{text-align:center;max-width:600px;margin:0 auto 36px}
+.talents-masthead{padding-bottom:28px;border-bottom:1px solid var(--line);margin-bottom:40px}
+.tm-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.tm-label{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.tm-count{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--txt2)}
+.talents-masthead h2{font-family:"Roboto Condensed","Arial Narrow","Helvetica Neue Condensed","DejaVu Sans Condensed",Arial,sans-serif;font-weight:900;font-size:clamp(3.4rem,9vw,7rem);line-height:.88;letter-spacing:.01em;transform:scaleX(.85);transform-origin:left;display:inline-block}
+.tm-sub{display:flex;justify-content:space-between;align-items:flex-end;margin-top:14px;gap:20px;flex-wrap:wrap}
+.tm-sub p{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:1.05rem;color:var(--txt2);max-width:420px}
+.tm-sub .filters{margin-top:0}
+.feature-block{position:relative;margin-bottom:40px;border:1px solid var(--line)}
+.feature-grid{display:grid;grid-template-columns:1.1fr .9fr;min-height:460px}
+.feature-media{position:relative;background:var(--card);overflow:hidden;cursor:pointer}
+.feature-media img{width:100%;height:100%;object-fit:cover;filter:grayscale(.1) contrast(1.05);transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.feature-media:hover img{transform:scale(1.03)}
+.feature-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,10,15,.85) 100%);pointer-events:none}
+.feature-media .play{position:absolute;inset:0;z-index:2}
+.feature-tag{position:absolute;top:20px;left:20px;z-index:3;display:flex;align-items:center;gap:8px;background:rgba(10,10,15,.7);backdrop-filter:blur(8px);padding:6px 14px;font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.feature-tag .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.feature-text{background:var(--paper);color:var(--ink);padding:40px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer}
+.feature-eyebrow{font-size:.64rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6b6356;margin-bottom:16px}
+.feature-text h3{font-family:"Roboto Condensed","Arial Narrow","Helvetica Neue Condensed","DejaVu Sans Condensed",Arial,sans-serif;font-weight:900;font-size:clamp(2.6rem,5.5vw,4.2rem);line-height:.9;letter-spacing:.01em;margin-bottom:16px;transform:scaleX(.85);transform-origin:left;display:inline-block}
+.feature-text p.intro{font-family:Georgia,"Times New Roman",serif;font-size:1.05rem;line-height:1.5;color:#3a3530;margin-bottom:24px}
+.feature-meta{display:flex;gap:20px;border-top:1px solid rgba(10,10,15,.15);padding-top:16px;margin-bottom:20px}
+.feature-meta div{display:flex;flex-direction:column}
+.feature-meta span:first-child{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#8a8276;margin-bottom:3px}
+.feature-meta span:last-child{font-family:"Roboto Condensed","Arial Narrow","Helvetica Neue Condensed","DejaVu Sans Condensed",Arial,sans-serif;font-weight:900;font-size:1.05rem;letter-spacing:.02em}
+.feature-cta{display:inline-flex;align-items:center;gap:10px;font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.feature-cta .circle{width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.feature-text:hover .feature-cta .circle{transform:translateX(4px) rotate(-45deg)}
+.mosaic-label{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px}
+.mosaic-label h3{font-family:"Roboto Condensed","Arial Narrow","Helvetica Neue Condensed","DejaVu Sans Condensed",Arial,sans-serif;font-weight:900;font-size:1.4rem;letter-spacing:.02em}
+.mosaic-label span{font-size:.68rem;color:var(--txt2);letter-spacing:.08em;text-transform:uppercase}
+.mosaic{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:150px;gap:14px;margin-bottom:40px}
+.mtile{position:relative;overflow:hidden;cursor:pointer;background:var(--card)}
+.mtile img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.22,1,.36,1),filter .4s}
+.mtile:hover img{transform:scale(1.05);filter:brightness(.55)}
+.mtile-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:16px;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.85) 100%)}
+.mtile-genre{position:absolute;top:14px;left:14px;width:8px;height:8px;border-radius:50%;z-index:2}
+.mtile-share{position:absolute;top:12px;right:12px;z-index:2;width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(10,10,15,.6);display:grid;place-items:center;color:#fff;opacity:0;transition:opacity .25s,border-color .25s}
+.mtile:hover .mtile-share{opacity:1}
+.mtile-share:hover{border-color:var(--gold);color:var(--gold)}
+.mtile-share svg{width:12px;height:12px;stroke:currentColor;fill:none}
+.mtile h4{font-family:"Roboto Condensed","Arial Narrow","Helvetica Neue Condensed","DejaVu Sans Condensed",Arial,sans-serif;font-weight:900;font-size:1.3rem;letter-spacing:.01em;color:#fff;line-height:1}
+.mtile span.mtile-city{font-size:.62rem;color:rgba(255,255,255,.6);letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
+.mtile.large{grid-column:span 3;grid-row:span 3}
+.mtile.large h4{font-size:2rem}
+.mtile.medium{grid-column:span 3;grid-row:span 2}
+.mtile.medium h4{font-size:1.6rem}
+.mtile.small{grid-column:span 2;grid-row:span 2}
+.no-result-mosaic{grid-column:1/-1;text-align:center;color:var(--txt2);padding:40px 20px;font-size:.9rem}
+@media(max-width:900px){
+.feature-grid{grid-template-columns:1fr}
+.feature-media{min-height:280px}
+.mosaic{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
+.mtile.large{grid-column:span 2;grid-row:span 2}
+.mtile.medium{grid-column:span 2;grid-row:span 2}
+.mtile.small{grid-column:span 1;grid-row:span 1}
+}
+.badge{display:inline-block;padding:5px 12px;background:rgba(200,164,78,.1);border-left:2px solid var(--gold);color:var(--gold);font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.head h2{font-family:"Roboto Condensed","Arial Narrow","Helvetica Neue Condensed","DejaVu Sans Condensed",Arial,sans-serif;font-weight:900;font-size:clamp(2.3rem,5.5vw,4rem);margin-bottom:8px;letter-spacing:.01em;line-height:.95;transform:scaleX(.85);transform-origin:center;display:inline-block}
+.head p{color:var(--txt2);font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:1.05rem}
+.track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 4px 24px;scrollbar-width:none}
+.track::-webkit-scrollbar{display:none}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.card{flex:0 0 290px;scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;position:relative;transition:transform .4s cubic-bezier(.22,1,.36,1),border-color .4s,box-shadow .4s}
+.grid3 .card{flex:none}
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(200,164,78,.14),rgba(232,196,106,.04) 35%,rgba(200,164,78,0) 65%);opacity:0;transition:opacity .4s ease;pointer-events:none;z-index:0}
+.card:hover{transform:translateY(-6px);border-color:rgba(200,164,78,.28);box-shadow:0 16px 48px rgba(0,0,0,.45),0 0 0 1px rgba(200,164,78,.06) inset}
+.card:hover::after{opacity:1}
+.see-all{text-align:center;margin-top:24px}
+.filters{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.filters button{padding:7px 14px;border:1px solid var(--line);background:none;color:var(--txt2);font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;transition:all .2s;white-space:nowrap}
+.filters button.active,.filters button:hover{background:var(--gold);color:#000;border-color:var(--gold)}
+.search-box{max-width:400px;margin:18px auto 0;position:relative}
+.search-box input{width:100%;padding:11px 16px 11px 40px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--txt);font-family:inherit;font-size:.85rem;transition:border-color .2s,background .2s}
+.search-box input:focus{outline:none;border-color:var(--gold);background:rgba(200,164,78,.04)}
+.search-box::before{content:"🔍";position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:.8rem;opacity:.5}
+.no-result{text-align:center;color:var(--txt2);padding:40px 20px;font-size:.9rem}
+.talent{cursor:pointer}
+.talent .thumb{position:relative;z-index:0;aspect-ratio:16/9;background:#000;cursor:pointer;overflow:hidden}
+.talent .thumb img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.talent .thumb:hover img{transform:scale(1.06);filter:brightness(.5)}
+.play{position:absolute;inset:0;display:grid;place-items:center}
+.play i{width:48px;height:48px;border-radius:50%;background:rgba(0,0,0,.55);border:1.5px solid rgba(200,164,78,.45);display:grid;place-items:center;color:var(--gold);font-style:normal;font-size:1rem;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);transition:transform .45s cubic-bezier(.34,1.56,.64,1),background .35s ease,border-color .35s ease,box-shadow .35s ease}
+.talent .thumb:hover .play i{transform:scale(1.18);background:rgba(200,164,78,.22);border-color:var(--gold);box-shadow:0 0 0 8px rgba(200,164,78,.08),0 8px 24px rgba(200,164,78,.25)}
+.talent .info{padding:14px 16px}
+.talent .info-top{display:flex;flex-wrap:wrap}
+.talent .info-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:2px}
+.talent .info-row h3{cursor:pointer}
+.card-share-btn{flex-shrink:0;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:none;display:grid;place-items:center;cursor:pointer;color:var(--txt2);transition:all .2s}
+.card-share-btn svg{width:13px;height:13px;stroke:currentColor;fill:none}
+.card-share-btn:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px) scale(1.08)}
+.tag{display:inline-block;padding:3px 8px;font-size:.56rem;font-weight:700;text-transform:uppercase;margin-right:5px;margin-bottom:6px;letter-spacing:.06em}
+.tag.pop{background:rgba(232,93,155,.1);color:var(--pink);border:1px solid rgba(232,93,155,.2)}
+.tag.afro{background:rgba(62,207,160,.1);color:var(--green);border:1px solid rgba(62,207,160,.2)}
+.tag.dance{background:rgba(79,216,224,.1);color:var(--cyan);border:1px solid rgba(79,216,224,.2)}
+.tag.indie{background:rgba(91,164,230,.08);color:var(--blue);border:1px solid rgba(91,164,230,.15)}
+.tag.hybrid{background:rgba(139,108,193,.1);color:var(--purple);border:1px solid rgba(139,108,193,.2)}
+.tag.city{background:rgba(255,255,255,.05);color:var(--txt2);border:1px solid rgba(255,255,255,.1)}
+.tag.soon{background:rgba(255,255,255,.04);color:var(--muted);border:1px solid rgba(255,255,255,.08)}
+.talent .info h3{font-size:1rem;font-weight:800}
+.talent .card-hint{position:absolute;bottom:8px;right:8px;background:rgba(200,164,78,.9);color:#000;font-size:.55rem;font-weight:800;text-transform:uppercase;padding:4px 8px;border-radius:999px;opacity:0;transform:translateY(4px);transition:opacity .3s,transform .3s;z-index:2;pointer-events:none;letter-spacing:.04em}
+.talent:hover .card-hint{opacity:1;transform:translateY(0)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:700px;margin:0 auto}
+.stat{text-align:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px 16px}
+.stat-num{font-family:"Roboto Condensed","Arial Narrow","Helvetica Neue Condensed","DejaVu Sans Condensed",Arial,sans-serif;font-weight:900;font-size:3rem;color:var(--gold);line-height:1;letter-spacing:.02em}
+.stat-label{color:var(--txt2);font-size:.78rem;margin-top:8px;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.genre-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.genre-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 18px;cursor:pointer;transition:transform .3s,border-color .3s,box-shadow .3s;position:relative;overflow:hidden;text-align:center}
+.genre-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity .3s}
+.genre-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.genre-card:hover::before{opacity:1}
+.genre-icon{font-size:1.8rem;margin-bottom:10px;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.genre-card:hover .genre-icon{transform:scale(1.25) rotate(-6deg)}
+.genre-card[data-genre="pop"]:hover{border-color:var(--pink);box-shadow:0 16px 40px rgba(232,93,155,.15)}
+.genre-card[data-genre="pop"]:hover .genre-icon{animation:flicker .6s ease-in-out infinite}
+.genre-card[data-genre="afro"]:hover{border-color:var(--green);box-shadow:0 16px 40px rgba(62,207,160,.15)}
+.genre-card[data-genre="afro"]:hover .genre-icon{animation:spin 3s linear infinite}
+.genre-card[data-genre="dance"]:hover{border-color:var(--cyan);box-shadow:0 16px 40px rgba(79,216,224,.15)}
+.genre-card[data-genre="dance"]:hover .genre-icon{animation:pulse .8s ease-in-out infinite}
+.genre-card[data-genre="indie"]:hover{border-color:var(--blue);box-shadow:0 16px 40px rgba(91,164,230,.15)}
+.genre-card[data-genre="indie"]:hover .genre-icon{animation:wiggle .5s ease-in-out infinite}
+.genre-card[data-genre="hybrid"]:hover{border-color:var(--purple);box-shadow:0 16px 40px rgba(139,108,193,.15)}
+.genre-card[data-genre="hybrid"]:hover .genre-icon{animation:zap .5s ease-in-out infinite}
+@keyframes flicker{0%,100%{transform:scale(1.25) rotate(-6deg)}50%{transform:scale(1.4) rotate(4deg)}}
+@keyframes wiggle{0%,100%{transform:scale(1.25) rotate(-8deg)}50%{transform:scale(1.25) rotate(8deg)}}
+@keyframes zap{0%,100%{transform:scale(1.25)}50%{transform:scale(1.45)}}
+.genre-card h3{font-family:"Roboto Condensed","Arial Narrow","Helvetica Neue Condensed","DejaVu Sans Condensed",Arial,sans-serif;font-weight:900;font-size:1.2rem;letter-spacing:.02em;margin-bottom:6px}
+.genre-card p{color:var(--txt2);font-size:.78rem;line-height:1.5}
+.clip-embed{position:relative;aspect-ratio:16/9;background:#000;border-radius:var(--r);overflow:hidden;margin:20px 0}
+.clip-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.clip-soon{position:relative;aspect-ratio:16/9;background:var(--card);border:1px dashed var(--line);border-radius:var(--r);margin:20px 0;display:grid;place-items:center;text-align:center;padding:20px}
+.clip-soon span{color:var(--muted);font-size:.82rem;font-weight:700}
+.article-header{position:relative;overflow:hidden;margin-bottom:0;aspect-ratio:16/9;background:var(--card)}
+.article-header img{width:100%;height:100%;object-fit:cover;filter:grayscale(.1) contrast(1.05);opacity:.85;animation:articleImgIn .8s cubic-bezier(.22,1,.36,1) both}
+@keyframes articleImgIn{from{transform:scale(1.08)}to{transform:scale(1)}}
+.article-header .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,15,.96) 5%,rgba(10,10,15,.2) 55%,transparent 80%);display:flex;flex-direction:column;justify-content:flex-end;padding:32px}
+.article-header .tag{font-size:.66rem;margin-bottom:10px}
+.article-header h1{font-family:"Roboto Condensed","Arial Narrow","Helvetica Neue Condensed","DejaVu Sans Condensed",Arial,sans-serif;font-weight:900;font-size:clamp(3.6rem,12vw,10.5rem);margin-bottom:0;letter-spacing:.01em;line-height:.82;transform:scaleX(.85);transform-origin:left;display:inline-block}
+.article-meta-panel{background:var(--paper);color:var(--ink);padding:18px 0}
+.article-meta-row{max-width:1040px;margin:0 auto;padding:0 20px;display:flex;gap:32px;flex-wrap:wrap}
+.article-meta-row div{display:flex;flex-direction:column}
+.article-meta-row span:first-child{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#8a8276;margin-bottom:3px}
+.article-meta-row span:last-child{font-family:"Roboto Condensed","Arial Narrow","Helvetica Neue Condensed","DejaVu Sans Condensed",Arial,sans-serif;font-weight:900;font-size:1.05rem;letter-spacing:.02em}
+.article-body{max-width:1040px;margin:0 auto;padding:40px 20px 0;display:grid;grid-template-columns:1fr 1.3fr;gap:32px;align-items:start}
+.article-media{display:flex;flex-direction:column;gap:14px;position:sticky;top:calc(var(--nav) + 20px)}
+.article-main{min-width:0}
+.article-date{display:none}
+.article-body p{color:var(--txt2);line-height:1.8;margin-bottom:16px;font-size:.95rem}
+.article-body h3{color:var(--gold);font-family:"Roboto Condensed","Arial Narrow","Helvetica Neue Condensed","DejaVu Sans Condensed",Arial,sans-serif;font-weight:900;margin:24px 0 8px;font-size:1.3rem;letter-spacing:.02em}
+.article-body .btn-back{margin-top:32px;display:inline-flex}
+.article-media .clip-embed,.article-media .clip-soon{margin:0}
+.streaming-links{display:flex;gap:8px;flex-wrap:wrap;margin:0}
+.streaming-links a{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--line);font-size:.74rem;font-weight:700;color:var(--txt2);transition:all .2s}
+.streaming-links a:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.streaming-links .soon{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px dashed var(--line);font-size:.74rem;font-weight:700;color:var(--muted)}
+.share-row{display:flex;gap:8px;align-items:center;margin-top:4px;padding-top:18px;border-top:1px solid var(--line)}
+.share-row span{font-size:.74rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.share-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:none;display:grid;place-items:center;cursor:pointer;color:var(--txt2);transition:all .2s}
+.share-btn svg{width:15px;height:15px;stroke:currentColor;fill:none}
+.share-btn:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--card);border:1px solid rgba(200,164,78,.35);color:var(--txt);padding:12px 20px;border-radius:999px;font-size:.82rem;font-weight:700;display:flex;align-items:center;gap:8px;box-shadow:0 12px 36px rgba(0,0,0,.5);z-index:5000;opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast svg{width:15px;height:15px;stroke:var(--gold);fill:none;flex-shrink:0}
+@media(max-width:900px){.article-body{grid-template-columns:1fr;gap:0}.article-media{position:static}}
+.related{margin-top:48px;border-top:1px solid var(--line);padding-top:32px}
+.related h3{font-family:"Roboto Condensed","Arial Narrow","Helvetica Neue Condensed","DejaVu Sans Condensed",Arial,sans-serif;font-weight:900;color:var(--gold);margin-bottom:16px;font-size:1.3rem;letter-spacing:.02em;text-align:center}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.related-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:transform .3s,border-color .3s}
+.related-card:hover{transform:translateY(-4px);border-color:rgba(200,164,78,.3)}
+.related-card img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.related-card .rc-info{padding:10px 12px}
+.related-card .rc-info h4{font-size:.84rem;font-weight:800;margin-bottom:2px}
+.related-card .rc-info span{font-size:.66rem;color:var(--txt2)}
+.interview-hero{padding:110px 20px 40px;border-bottom:1px solid var(--line);max-width:1100px;margin:0 auto;text-align:left}
+.interview-name{font-family:"Roboto Condensed","Arial Narrow","Helvetica Neue Condensed","DejaVu Sans Condensed",Arial,sans-serif;font-weight:900;font-size:clamp(3.4rem,12vw,9rem);line-height:.85;letter-spacing:.01em;transform:scaleX(.85);transform-origin:left;display:inline-block;margin-top:8px}
+.interview-meta{color:var(--txt2);font-size:.9rem;margin-top:8px}
+.interview-bio-panel{max-width:1100px;margin:32px auto;background:var(--paper);color:#3a3530;padding:32px;border-left:3px solid var(--gold)}
+.interview-bio-panel p{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:1.15rem;line-height:1.6;margin:0}
+.qna-list{max-width:820px;margin:40px auto 0;padding:0 20px;display:grid;gap:0}
+.qna-item{display:grid;grid-template-columns:60px 1fr;gap:16px;padding:24px 0;border-top:1px solid var(--line)}
+.qna-num{font-family:"Roboto Condensed","Arial Narrow","Helvetica Neue Condensed","DejaVu Sans Condensed",Arial,sans-serif;font-weight:900;font-size:1.6rem;color:var(--gold);letter-spacing:.02em}
+.qna-item b{display:block;font-size:1rem;font-weight:700;margin-bottom:8px;color:var(--txt)}
+.qna-item p{color:var(--txt2);font-size:.92rem;line-height:1.7;margin:0}
+@media(max-width:640px){.interview-hero{padding:100px 18px 32px}.qna-item{grid-template-columns:40px 1fr}}
+.about-hero{padding:110px 20px 40px;border-bottom:1px solid var(--line);max-width:1100px;margin:0 auto}
+.about-title{font-family:"Roboto Condensed","Arial Narrow","Helvetica Neue Condensed","DejaVu Sans Condensed",Arial,sans-serif;font-weight:900;font-size:clamp(3.4rem,12vw,9rem);line-height:.85;letter-spacing:.01em;transform:scaleX(.85);transform-origin:left;display:inline-block;margin-top:8px}
+.about{display:grid;grid-template-columns:1.3fr .7fr;gap:18px;max-width:1100px;margin:40px auto 0;padding:0 20px}
+.about .main{background:var(--paper);color:#3a3530;border-left:3px solid var(--gold);padding:32px}
+.about h3{font-family:"Roboto Condensed","Arial Narrow","Helvetica Neue Condensed","DejaVu Sans Condensed",Arial,sans-serif;font-weight:900;color:#6b6356;margin-bottom:10px;font-size:1.3rem;letter-spacing:.02em}
+.about .main p{font-family:Georgia,"Times New Roman",serif;font-style:italic;color:#3a3530;margin-bottom:12px;font-size:1rem;line-height:1.6}
+.values{display:grid;gap:12px}
+.val{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;transition:border-color .2s,transform .2s}
+.val:hover{border-color:rgba(200,164,78,.2);transform:translateX(4px)}
+.val-icon{font-size:1.3rem;margin-bottom:6px}
+.val b{display:block;margin-bottom:4px;font-weight:800;font-size:.92rem}
+.val span{color:var(--txt2);font-size:.82rem}
+.part-simple{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:32px;text-align:center}
+.part-simple p{color:var(--txt2);font-size:.9rem;line-height:1.7;margin-bottom:24px}
+.part-simple .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+form{max-width:620px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;display:grid;gap:12px}
+.form-note{text-align:center;color:var(--muted);font-size:.76rem;line-height:1.5;margin-top:-2px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{font-size:.7rem;font-weight:700;color:var(--txt2);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
+input,select,textarea{width:100%;padding:11px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--txt);font-family:inherit;font-size:.88rem;transition:border-color .2s,background .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);background:rgba(200,164,78,.04)}
+select option{background:var(--card)}
+textarea{min-height:90px;resize:vertical}
+.form-success{text-align:center;padding:30px;animation:fadeUp .4s ease}
+.form-success .icon{font-size:2.5rem;margin-bottom:12px}
+.form-success h3{color:var(--gold);margin-bottom:6px}
+.form-success p{color:var(--txt2);font-size:.88rem}
+.legal-grid{max-width:820px;margin:0 auto;padding:0 20px 60px;display:grid;gap:14px}
+.legal-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.legal-card h3{color:var(--gold);font-size:.98rem;margin-bottom:8px;font-weight:800}
+.legal-card p{color:var(--txt2);line-height:1.7;margin-bottom:6px;font-size:.86rem}
+footer{border-top:1px solid var(--line);padding:36px 20px 22px;background:var(--bg2);margin-top:20px}
+.foot-top{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:28px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.foot-brand p{color:var(--txt2);font-size:.82rem;margin-top:10px;line-height:1.6;max-width:280px}
+.foot-col h5{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px}
+.foot-col a{display:block;color:var(--txt2);font-size:.8rem;margin-bottom:8px;transition:color .2s;cursor:pointer}
+.foot-col a:hover{color:var(--gold)}
+.foot-bottom{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding-top:18px}
+.copy{color:var(--muted);font-size:.66rem}
+.btn:active{transform:scale(0.97)}.card:active{transform:scale(0.98)}
+a,button,.btn,.card,.logo{cursor:pointer}
+::selection{background:var(--gold);color:#000}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:10px}
+*:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:grid;place-items:center;transition:opacity .6s ease,visibility .6s ease}
+#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-anim{width:50px;height:50px;position:relative}
+.loader-anim::before,.loader-anim::after{content:'';position:absolute;inset:0;border-radius:50%;border:3px solid transparent}
+.loader-anim::before{border-top-color:var(--gold);animation:spin 1s linear infinite}
+.loader-anim::after{border-bottom-color:var(--gold2);animation:spin .8s linear infinite reverse}
+.loader-text{margin-top:16px;color:var(--txt2);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;animation:pulseText 1.5s ease infinite}
+#progressBar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:9999;width:0%;transition:width .1s ease}
+@media(max-width:900px){.links{display:none}.burger{display:block}.about{grid-template-columns:1fr}.foot-top{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}.article-header{aspect-ratio:16/9}}
+@media(max-width:640px){.row{grid-template-columns:1fr}.card{flex:0 0 260px}.hero{padding:90px 16px 50px;min-height:auto}.hero h1{font-size:2rem;line-height:1.1}.foot-top{grid-template-columns:1fr;gap:20px}.filters{gap:5px}.filters button{font-size:.64rem;padding:5px 10px}.logo-rise{font-size:1.2rem}.logo-sub{font-size:.4rem}section{padding:60px 18px}.page-top{padding-top:100px}.article-header{aspect-ratio:4/3}.article-header .overlay{padding:16px}.article-header h1{font-size:1.3rem}.talent .card-hint{opacity:1;transform:translateY(0)}.genre-grid{grid-template-columns:1fr 1fr}.stat-num{font-size:1.8rem}}
+@media(max-width:380px){.hero h1{font-size:1.75rem}.btns{flex-direction:column;width:100%}.btn{width:100%;justify-content:center}.genre-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="loader"><div style="text-align:center"><div class="loader-anim"></div><div class="loader-text">Rise Music Mag</div></div></div>
+<div id="progressBar"></div>
+<nav class="nav" id="mainNav"><div class="nav-in">
+<div class="logo" data-go="home" role="link" tabindex="0" aria-label="Retour à l'accueil Rise Music Mag"><svg class="logo-symbol" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="riseLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#C8A44E"/><stop offset="100%" stop-color="#E8C46A"/></linearGradient></defs><polygon points="50,4 89.8,27 89.8,73 50,96 10.2,73 10.2,27" fill="none" stroke="url(#riseLogoGrad)" stroke-width="3.5"/><rect x="27" y="40" width="6" height="20" rx="2" fill="url(#riseLogoGrad)"/><rect x="37" y="34" width="6" height="32" rx="2" fill="url(#riseLogoGrad)"/><rect x="47" y="28" width="6" height="44" rx="2" fill="url(#riseLogoGrad)"/><rect x="57" y="34" width="6" height="32" rx="2" fill="url(#riseLogoGrad)"/><rect x="67" y="40" width="6" height="20" rx="2" fill="url(#riseLogoGrad)"/></svg><div class="logo-text"><span class="logo-rise">RISE</span><span class="logo-bar"></span><span class="logo-sub">Music Mag</span></div></div>
+<ul class="links"><li><a href="/talents" data-go="talents">Talents</a></li><li><a href="/interview" data-go="interview">Interview</a></li><li><a href="/about" data-go="about">À propos</a></li><li><a href="/partenariats" data-go="partenariats">Partenariats</a></li><li><a href="/contact" data-go="contact" class="cta">Proposer</a></li></ul>
+<button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button></div></nav>
+<div class="mnav" id="mnav">
+<div class="mnav-logo"><svg class="logo-symbol" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="riseLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#C8A44E"/><stop offset="100%" stop-color="#E8C46A"/></linearGradient></defs><polygon points="50,4 89.8,27 89.8,73 50,96 10.2,73 10.2,27" fill="none" stroke="url(#riseLogoGrad)" stroke-width="3.5"/><rect x="27" y="40" width="6" height="20" rx="2" fill="url(#riseLogoGrad)"/><rect x="37" y="34" width="6" height="32" rx="2" fill="url(#riseLogoGrad)"/><rect x="47" y="28" width="6" height="44" rx="2" fill="url(#riseLogoGrad)"/><rect x="57" y="34" width="6" height="32" rx="2" fill="url(#riseLogoGrad)"/><rect x="67" y="40" width="6" height="20" rx="2" fill="url(#riseLogoGrad)"/></svg><div class="logo-text"><span class="logo-rise">RISE</span><span class="logo-bar"></span><span class="logo-sub">Music Mag</span></div></div>
+<a href="/" data-go="home">Accueil</a><a href="/talents" data-go="talents">Artistes à découvrir</a><a href="/interview" data-go="interview">Interview</a><a href="/about" data-go="about">À propos</a><a href="/partenariats" data-go="partenariats">Partenariats</a><a href="/contact" data-go="contact">Proposer un artiste</a><a href="/legal" data-go="legal">Mentions légales</a></div>
+<div class="page active" id="page-home"><section class="hero"><div class="hero-bg"></div><div class="hero-content"><div class="kick"><span class="kick-dot"></span>MÉDIA MUSICAL INDÉPENDANT</div><h1>La musique, des <em>découvertes</em> aux talents confirmés</h1><p>Rise Music Mag explore la scène musicale dans son ensemble : nouveaux talents à suivre, artistes indépendants et actualité des artistes confirmés. Pop, afro, dance, indie et hybrid pop.</p><div class="btns"><a href="/talents" class="btn gold" data-go="talents">Découvrir les artistes</a><a href="/contact" class="btn line" data-go="contact">Proposer un artiste →</a></div></div></section>
+<section><div class="wrap"><div class="stats"><div class="stat reveal reveal-delay-1"><div class="stat-num" id="stat-artists">0</div><div class="stat-label">Artistes</div></div><div class="stat reveal reveal-delay-2"><div class="stat-num">5</div><div class="stat-label">Genres</div></div><div class="stat reveal reveal-delay-3"><div class="stat-num">2026</div><div class="stat-label">Depuis</div></div></div></div></section>
+<section><div class="wrap head reveal"><span class="badge">Sélection</span><h2>Artistes à découvrir</h2><p>Notre sélection éditoriale de la semaine, entre nouveaux talents et actualité musicale</p></div><div class="wrap"><div class="track" id="preview-track"></div></div><div class="see-all reveal"><a href="/talents" class="btn line" data-go="talents">Voir tous les artistes →</a></div></section>
+<section style="background:var(--bg2)"><div class="wrap head reveal"><span class="badge">Nos univers</span><h2>5 scènes qu'on explore</h2><p>De la découverte musicale à l'actualité des artistes confirmés, les genres que nous suivons avec rigueur éditoriale.</p></div><div class="wrap"><div class="genre-grid"><div class="genre-card reveal reveal-delay-1" data-genre="pop" onclick="filterAndGo('pop')"><div class="genre-icon">✨</div><h3>Pop & Nouvelle Variété</h3><p>Chanson texturée, mélodies solaires et textes forts. La nouvelle scène française qui réinvente la variété avec audace.</p><span class="tag pop" style="margin-top:8px">Explorer →</span></div><div class="genre-card reveal reveal-delay-2" data-genre="afro" onclick="filterAndGo('afro')"><div class="genre-icon">🌍</div><h3>Afro & Global Pop</h3><p>Afrobeats, amapiano et fusions ensoleillées. Les rythmes globaux qui redéfinissent la pop francophone.</p><span class="tag afro" style="margin-top:8px">Explorer →</span></div><div class="genre-card reveal reveal-delay-3" data-genre="dance" onclick="filterAndGo('dance')"><div class="genre-icon">🪩</div><h3>Dance & Club Pop</h3><p>Eurodance moderne, house solaire et hymnes de clubs. Les producteurs et artistes qui font vibrer la nuit européenne.</p><span class="tag dance" style="margin-top:8px">Explorer →</span></div><div class="genre-card reveal reveal-delay-4" data-genre="indie" onclick="filterAndGo('indie')"><div class="genre-icon">☁️</div><h3>Bedroom Pop & Indie</h3><p>Pop intimiste, synthés lo-fi et textes à fleur de peau. La scène alternative qui compose depuis sa chambre.</p><span class="tag indie" style="margin-top:8px">Explorer →</span></div><div class="genre-card reveal reveal-delay-5" data-genre="hybrid" onclick="filterAndGo('hybrid')"><div class="genre-icon">⚡</div><h3>Hybrid & Future Pop</h3><p>Fusions audacieuses, pop électronique et projets inclassables. Ceux qui cassent les codes et inventent le futur.</p><span class="tag hybrid" style="margin-top:8px">Explorer →</span></div></div></div></section>
+<section><div class="wrap head reveal"><span class="badge">Tu fais de la musique ?</span><h2>On veut t'écouter</h2><p>Chaque semaine, on sélectionne les projets qui nous bluffent. Pas d'algorithme, juste des oreilles.</p><div style="margin-top:20px"><a href="/contact" class="btn gold" data-go="contact">Proposer mon projet</a></div></div></section></div>
+<div class="page" id="page-talents"><section class="page-top"><div class="wrap talents-masthead reveal"><div class="tm-top"><span class="tm-label">RISE MUSIC MAG</span><span class="tm-count" id="tm-count">15 ARTISTES · 5 UNIVERS</span></div><h2>ARTISTES</h2><div class="tm-sub"><p>Nouveaux talents et artistes confirmés, sélectionnés à l'oreille.</p><div class="filters"><button class="active" data-filter="all">Tous</button><button data-filter="pop">Pop</button><button data-filter="afro">Afro</button><button data-filter="dance">Dance</button><button data-filter="indie">Indie</button><button data-filter="hybrid">Hybrid</button></div></div><div class="search-box"><input type="text" id="searchInput" placeholder="Rechercher un artiste..."></div></div></section><div class="wrap"><div id="talentFeature"></div><div id="talentMosaic"></div></div></div>
+<div class="article-page" id="dynamic-article-view"></div>
+<div class="page" id="page-interview"><section class="interview-hero"><span class="badge">Portrait</span><h2 class="interview-name">FRIEDA</h2><div class="interview-meta">Hybrid & Future Pop · Montreuil · EP « Derrière le soleil »</div></section><div class="wrap"><div class="interview-bio-panel reveal"><p>Formée au piano dès l'enfance, Frieda fusionne gospel, hip hop et chanson à texte dans une pop théâtrale et habitée. Voix puissante, mise en scène scintillante, pas de demi-mesure.</p></div><div class="qna-list"><div class="qna-item reveal reveal-delay-1"><span class="qna-num">01</span><div><b>D'où vient le nom Frieda ?</b><p>Moins un hommage à Frida Kahlo qu'une façon de féminiser Friedrich, qui signifie « puissant et paix ». Elle aime cette rencontre entre une force affichée et une vulnérabilité qu'on devine derrière.</p></div></div><div class="qna-item reveal reveal-delay-2"><span class="qna-num">02</span><div><b>Ta musique en une phrase ?</b><p>Une pop qui ose le grandiloquent pour mieux parler d'acceptation de soi.</p></div></div><div class="qna-item reveal reveal-delay-3"><span class="qna-num">03</span><div><b>Pourquoi l'autoproduction pour ton EP ?</b><p>Pour garder une parole entièrement libre et ne rien composer qui ne lui ressemble pas, même si la charge de travail est immense sans l'appui d'un label.</p></div></div><div class="qna-item reveal reveal-delay-4"><span class="qna-num">04</span><div><b>Le thème central de « Derrière le soleil » ?</b><p>Le décalage entre l'image solaire qu'on lui prête et une part plus intime qu'elle dévoile enfin dans ses morceaux, entre injonctions sociales et quête d'amour-propre.</p></div></div><div class="qna-item reveal reveal-delay-5"><span class="qna-num">05</span><div><b>La suite ?</b><p>Continuer à défendre « Derrière le soleil » sur scène et explorer de nouvelles collaborations.</p></div></div></div></div></div>
+<div class="page" id="page-about"><section class="about-hero"><span class="badge">Le média</span><h2 class="about-title">À PROPOS</h2></section><div class="wrap about"><div class="main reveal"><h3>Notre mission</h3><p>Rise Music Mag est un média musical indépendant créé en 2026. Notre ADN, c'est la découverte : repérer les nouveaux talents et les artistes indépendants avant tout le monde. Mais la musique ne s'arrête pas à l'émergence — on suit aussi l'actualité des artistes confirmés dès qu'ils ont un projet, un clip ou une sortie qui mérite d'être raconté.</p><p>Pop, afro, dance, indie, hybrid pop — la scène musicale dans son ensemble, tant qu'il y a une identité forte derrière.</p></div><div class="values"><div class="val reveal reveal-delay-1"><div class="val-icon">👂</div><b>Écoute</b><span>Chaque projet est écouté avant publication, qu'il vienne d'un nouveau talent ou d'un artiste confirmé.</span></div><div class="val reveal reveal-delay-2"><div class="val-icon">🎯</div><b>Exigence</b><span>Pas de copier-coller de communiqués.</span></div><div class="val reveal reveal-delay-3"><div class="val-icon">🔒</div><b>Indépendance</b><span>Sélection éditoriale, pas d'algorithme.</span></div></div></div></div>
+<div class="page" id="page-partenariats"><section class="about-hero"><span class="badge">Collaborations</span><h2 class="about-title">TRAVAILLONS<br>ENSEMBLE</h2><p class="interview-meta" style="margin-top:14px;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:1.05rem">Vous avez un projet ? On est ouvert à toute proposition.</p></section><div class="wrap" style="max-width:600px;margin:40px auto 0"><div class="part-simple reveal"><p>Labels, artistes, marques, festivals —<br>dites-nous ce que vous avez en tête.</p><div class="btns"><a href="/contact" class="btn gold" data-go="contact">Nous écrire</a><a href="mailto:contact@risemusicmag.fr" class="btn line">contact@risemusicmag.fr</a></div></div></div></section></div>
+<div class="page" id="page-contact"><section class="about-hero"><span class="badge">Tu fais de la musique ?</span><h2 class="about-title">ON VEUT<br>T'ÉCOUTER</h2><p class="interview-meta" style="margin-top:14px;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:1.05rem">Chaque semaine, on sélectionne les projets qui nous bluffent. Pas d'algorithme, juste des oreilles.</p></section><div class="wrap" style="margin-top:40px;padding-left:20px;padding-right:20px"><div id="formWrap"><form id="contactForm" action="https://formspree.io/f/xqeojklz" method="POST"><div class="row"><div><label>Nom artiste *</label><input required name="artiste" id="artistName" placeholder="Ex: Coline Rio"></div><div><label>Ton univers *</label><select required name="style" id="artistStyle"><option value="">Choisir</option><option>Pop & Nouvelle Variété</option><option>Afro & Global Pop</option><option>Dance & Club Pop</option><option>Bedroom Pop & Indie</option><option>Hybrid & Future Pop</option><option>Autre</option></select></div></div><div class="row"><div><label>Ville *</label><input required name="ville" id="artistCity" placeholder="Ex: Paris"></div><div><label>Email *</label><input type="email" required name="email" id="artistEmail" placeholder="contact@exemple.fr"></div></div><div><label>Lien d'écoute (clip, Spotify, SoundCloud...) *</label><input type="url" required name="lien" id="artistLink" placeholder="https://"></div><div><label>Pourquoi on devrait t'écouter ?</label><textarea name="message" id="artistMsg" placeholder="Ce qui te rend différent, ton actu, ta dernière sortie..."></textarea></div><button class="btn gold" style="width:100%;justify-content:center" type="submit">Envoyer ma fiche</button><p class="form-note">Réponse sous 5 à 10 jours. Qu'on dise oui ou non, on revient toujours vers toi.</p></form></div></div></section></div>
+<div class="page" id="page-legal"><section class="about-hero"><span class="badge">Informations</span><h2 class="about-title">MENTIONS<br>LÉGALES</h2></section><div class="legal-grid" style="margin-top:40px"><div class="legal-card reveal"><h3>1. Éditeur du site</h3><p>Nom du site : Rise Music Mag</p><p>URL : https://risemusicmag.fr</p><p>Directeur de la publication : [Votre nom complet]</p><p>Email : contact@risemusicmag.fr</p><p>Statut : [Auto-entrepreneur / Association / SAS — à compléter]</p><p>SIRET : [Numéro SIRET — à compléter]</p><p>Adresse : [Adresse postale — à compléter]</p></div><div class="legal-card reveal"><h3>2. Hébergement</h3><p>Hébergeur : Netlify, Inc.</p><p>Adresse : 44 Montgomery Street, Suite 300, San Francisco, CA 94104, USA</p></div><div class="legal-card reveal"><h3>3. Propriété intellectuelle</h3><p>L'ensemble du contenu du site Rise Music Mag est la propriété exclusive de Rise Music Mag, sauf mention contraire.</p><p>Toute reproduction est interdite sans autorisation écrite préalable.</p></div><div class="legal-card reveal"><h3>4. Protection des données (RGPD)</h3><p>Rise Music Mag collecte des données via le formulaire de proposition (nom d'artiste, ville, email, lien d'écoute, message), uniquement pour traiter les soumissions et y répondre.</p><p>Ces données sont conservées le temps nécessaire au traitement de la demande, puis supprimées si la collaboration n'est pas donnée suite.</p><p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour l'exercer, contactez-nous à l'adresse ci-dessous.</p><p>Contact : contact@risemusicmag.fr</p></div><div class="legal-card reveal"><h3>5. Cookies</h3><p>Le site utilise des cookies techniques. Des cookies tiers peuvent être déposés par YouTube.</p></div><div class="legal-card reveal"><h3>6. Droit applicable</h3><p>Le présent site est régi par le droit français.</p></div></div></div>
+<footer>
+<div class="foot-top">
+<div class="foot-brand">
+<div class="logo" data-go="home" role="link" tabindex="0" aria-label="Retour à l'accueil Rise Music Mag"><svg class="logo-symbol" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="riseLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#C8A44E"/><stop offset="100%" stop-color="#E8C46A"/></linearGradient></defs><polygon points="50,4 89.8,27 89.8,73 50,96 10.2,73 10.2,27" fill="none" stroke="url(#riseLogoGrad)" stroke-width="3.5"/><rect x="27" y="40" width="6" height="20" rx="2" fill="url(#riseLogoGrad)"/><rect x="37" y="34" width="6" height="32" rx="2" fill="url(#riseLogoGrad)"/><rect x="47" y="28" width="6" height="44" rx="2" fill="url(#riseLogoGrad)"/><rect x="57" y="34" width="6" height="32" rx="2" fill="url(#riseLogoGrad)"/><rect x="67" y="40" width="6" height="20" rx="2" fill="url(#riseLogoGrad)"/></svg><div class="logo-text"><span class="logo-rise">RISE</span><span class="logo-bar"></span><span class="logo-sub">Music Mag</span></div></div>
+<p>Média musical indépendant. Découvertes, artistes indépendants et actualité musicale.</p>
+</div>
+<div class="foot-col"><h5>Navigation</h5><a href="/talents" data-go="talents">Talents</a><a href="/interview" data-go="interview">Interview</a><a href="/about" data-go="about">À propos</a></div>
+<div class="foot-col"><h5>Rise Music Mag</h5><a href="/partenariats" data-go="partenariats">Partenariats</a><a href="/contact" data-go="contact">Proposer un artiste</a><a href="mailto:contact@risemusicmag.fr">contact@risemusicmag.fr</a><a href="/legal" data-go="legal">Mentions légales</a></div>
+</div>
+<div class="foot-bottom">
+<div class="copy">© <span id="copyYear">2025</span> Rise Music Mag — risemusicmag.fr</div>
+<div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+<span style="font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:700;">Suivre Rise</span>
+<div style="display:flex;gap:8px;">
+<a href="https://instagram.com/risemusicmag" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--line);font-size:.75rem;font-weight:700;color:var(--txt2);text-decoration:none;transition:all .2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)';" onmouseout="this.style.borderColor='var(--line)';this.style.color='var(--txt2)';">📷 Instagram</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+const talents=[
+{id:"sam-sauvage",nom:"Sam Sauvage",genre:"pop",ville:"Boulogne-sur-Mer",meta:"Boulogne-sur-Mer · album « Mesdames, Messieurs ! »",date:"30 janvier 2026",photo:null,youtube:"4ycFfioIey4",instagram:null,description:"Sam Sauvage distille une pop élégante et décalée, costume sombre et chaussettes rouges, où la mélancolie n'exclut jamais l'ironie. Entre chanson française, new wave et électro, sa voix grave chante les noctambules et les danseurs solitaires avec un sens de la formule hérité de Bashung autant que de Bob Dylan.",parcours:"Né Hugo Brebion le 25 avril 2000 à Saint-Martin-Boulogne, il grandit à Condette et découvre la guitare en autodidacte après avoir vu un live de Bob Dylan sur YouTube. Après le groupe Photomaton puis le duo Mascaraa, il chante dans les rues et les bars de Lille avant de s'installer à Paris pour des études d'ingénieur du son. Son premier EP autoproduit « Prémices » sort en 2023 ; il signe ensuite chez Cinq7 (Wagram), multiplie les premières parties (Voyou, Arthur Teboul, Eddy de Pretto) et remporte la Victoire de la Musique de la Révélation masculine en 2026, l'année de son premier album « Mesdames, Messieurs ! »."},
+{id:"coline-rio",nom:"Coline Rio",genre:"pop",ville:"Nantes",meta:"Nantes · album « Maison »",date:"10 octobre 2025",photo:null,youtube:"mqkQa481rc0",instagram:null,description:"Coline Rio écrit une chanson française électro-acoustique pétrie de folk et de douceur amère, où piano et arrangements feutrés portent des textes sur le refuge intérieur, la reconquête de soi et la transmission familiale.",parcours:"Née dans une famille de musiciens nantais (mère chanteuse, frère batteur), elle apprend le piano et le chant dès 6 ans avant d'intégrer le groupe Inüit en 2015. Après la séparation du groupe pendant la pandémie, elle se lance en solo : EP « Lourd et délicat » (2022), premier album « Ce qu'il restera de nous » (2023, studio de Stan Neff), puis l'EP collaboratif « Ce qui nous lie » avec Albin de la Simone et Voyou. Son second album « Maison », enregistré avec un orchestre à distance en Macédoine et incluant un duo avec Barbara Pravi, sort le 10 octobre 2025."},
+{id:"asphalt",nom:"Asphalt",genre:"pop",ville:"Paris",meta:"Paris · EP « Cocktail Exil »",date:"28 mars 2025",photo:null,youtube:"7opdO-Vsbvs",instagram:null,description:"Asphalt façonne une pop mélancolique aux éclats rock, entre énergie garage et textes à fleur de peau, citant aussi bien Bashung que Gorillaz ou Ozzy Osbourne. Son single « Lame de fond » marque un virage plus dansant et plus coloré, assumant enfin la fête après des débuts plus sombres entre grunge et trap.",parcours:"Né Milo Thoretton le 31 décembre 1996 à Paris, il est le fils de l'actrice Chiara Mastroianni et le petit-fils de Catherine Deneuve — un héritage familial qu'il revendique sans s'y enfermer, après être passé par le mannequinat et le cinéma. Guidé par son ex-beau-père Benjamin Biolay, qui coécrit avec lui « Lame de fond » et d'autres titres, il sort son EP « Cocktail Exil » le 28 mars 2025, six titres entre rock garage, hyperpop et power pop."},
+{id:"theodora",nom:"Theodora",genre:"afro",ville:"Paris",meta:"Paris · 22 ans · single « Kongolese sous BBL »",date:"27 septembre 2024",photo:null,youtube:"nNaVCjEJeEg",instagram:null,description:"Theodora ne reconnaît aucune frontière entre les genres : afrobeat, hyperpop, bouyon, calypso, R&B et amapiano se croisent dans son univers, porté par une présence scénique flamboyante et assumée.",parcours:"Enfant de la diaspora congolaise, elle grandit aux côtés de son frère Jeez Suave qui l'initie au chant. Révélée par le tube « Kongolese sous BBL », elle multiplie depuis les collaborations prestigieuses et prépare un nouveau projet attendu pour l'été 2026."},
+{id:"ronisia",nom:"Ronisia",genre:"afro",ville:"Paris",meta:"Paris · single « Fan »",date:"02 mai 2025",photo:null,youtube:"PXALYDUwNag",instagram:null,description:"Ronisia incarne une pop urbaine lumineuse, à la croisée du R&B et des sonorités afro. Sa voix solaire et ses mélodies entêtantes lui ont valu d'être identifiée comme une des révélations féminines de la scène urbaine française.",parcours:"Remarquée dès ses premiers singles, elle multiplie les featurings marquants, de Tiakola à Gazo, avant de poursuivre sa carrière solo avec des titres comme « Fan » et « Swipe », confirmant une ascension constante depuis plusieurs saisons."},
+{id:"okali",nom:"OKALI",genre:"afro",ville:"Toulouse",meta:"Toulouse · duo franco-camerounais",date:"20 février 2026",photo:null,youtube:"4Oba0-Hf07M",instagram:null,description:"OKALI tisse une musique sans frontière où se croisent sonorités africaines, trip hop, dub et rock. Porté par la voix incarnée de Gaëlle, qui chante en français, anglais, eton et zoulou, le duo construit un univers visuel et sonore rare.",parcours:"Formé par la chanteuse Gaëlle Minali-Bella, originaire du Cameroun, et le multi-instrumentiste Florent Sorin, le duo s'est fait connaître via The Voice avant de tracer sa propre route. Leur premier EP éponyme est sorti en février 2026, après plusieurs scènes remarquées dont la Fête de l'Huma."},
+{id:"tdj",nom:"TDJ",genre:"dance",ville:"Montréal",meta:"Montréal · single « Shoreline »",date:"25 juin 2025",photo:null,youtube:"DcS37laAqzM",instagram:null,description:"TDJ ressuscite l'eurodance et la trance des années 90-2000 avec une ferveur intacte, mêlant sonorités emo et pop à des productions taillées pour la piste de danse, comme une capsule temporelle assumée et solaire.",parcours:"Geneviève Ryan Martel, alias TDJ ou Terrain de Jeux, a commencé chant et guitare à 14 ans avant de fonder ce projet avec son partenaire Lucas, fasciné comme elle par la trance nocturne. Son single « Shoreline », featuring Danny L Harle, annonce un premier album."},
+{id:"eloi",nom:"Eloi",genre:"dance",ville:"Paris",meta:"Paris · album « Blast »",date:"25 avril 2025",photo:null,youtube:"k8t1gRYwI1Y",instagram:null,description:"Eloi construit une eurodance électrique et féroce, entre coldwave, electroclash et hyperpop. Basses tranchantes, élans new wave et énergie de piste de danse caractérisent un univers pensé comme un collage visuel et sonore.",parcours:"Éloïse Leau, diplômée des Beaux-Arts de Paris, se fait connaître par une reprise remarquée de Wejdene avant de sortir deux EPs puis un premier album, « Dernier Orage ». Avec « Blast » (2025), elle s'impose sur la scène électronique, jusqu'à l'Olympia."},
+{id:"siks",nom:"Siks",genre:"dance",ville:"Lyon",meta:"Lyon · single « À La Parisienne »",date:"08 février 2024",photo:null,youtube:"8hsfpeJuKZI",instagram:null,description:"Siks produit une électro dance solaire et accessible, à la croisée de la house et de la pop. Son titre « À La Parisienne » revisite l'esprit de la chanson française des années 50-60 sur une production résolument dansante.",parcours:"Nicolás Chapelan, DJ et producteur lyonnais, s'est fait connaître avec « Make Me Feel » sur le label de Don Diablo puis « With Me ». Sa reprise de « La Bohème » d'Aznavour, diffusée sous l'Arc de Triomphe pour le Nouvel An, confirme une vraie audience grand public."},
+{id:"claude",nom:"Claude",genre:"indie",ville:"Saint-Germain-en-Laye",meta:"Région parisienne · EP « Bientôt la nuit »",date:"10 novembre 2022",photo:null,youtube:"AqVJeMNNY90",instagram:null,description:"Claude conjugue chanson française et acid house dans une pop électro caustique et autodérisoire. Sa voix singulière, comparée à celle de Claude Nougaro, porte des textes intimes sur la solitude, l'hypocondrie ou la peur de l'engagement.",parcours:"D'abord publié sous le pseudonyme Gesleir pendant le confinement de 2020, il devient Claude pour son EP « Bientôt la nuit » puis son premier album « In Extremis » (2024), coécrit avec le producteur Alexis Delong, collaborateur de Zaho de Sagazan."},
+{id:"yoa",nom:"Yoa",genre:"indie",ville:"Paris",meta:"Paris · EP éponyme",date:"14 juin 2024",photo:null,youtube:"X_pzk2-TH_I",instagram:null,description:"Yoa pratique une bedroom pop à la fois douce et caustique, où des textes très personnels se posent sur des productions minimalistes et lo-fi. Sa formule, « my name is Yoa and I sing sad french songs », résume un univers à fleur de peau.",parcours:"Révélée dès 22 ans avec son premier EP, la jeune Parisienne s'est imposée comme une des voix les plus attachantes de la scène pop indépendante française, avant de publier son premier album « La Favorite »."},
+{id:"liv-del-estal",nom:"Liv del Estal",genre:"indie",ville:"Paris",meta:"Paris · EP « Ma vie en vrac »",date:"04 juin 2021",photo:null,youtube:"74Tfy1bcm_M",instagram:null,description:"Liv del Estal navigue dans une pop indie introspective, portée par une écriture directe sur les failles et les hésitations de l'âge adulte. Sa voix, remarquée depuis ses débuts, sert des chansons sans artifice ni grandiloquence.",parcours:"Révélée au grand public via The Voice en 2018, elle signe ensuite chez Universal Music et choisit une carrière plus personnelle, loin des sentiers du télécrochet, avec des EPs comme « Ma vie en vrac »."},
+{id:"frieda",nom:"Frieda",genre:"hybrid",ville:"Montreuil",meta:"Montreuil · EP « Derrière le soleil »",date:"19 janvier 2025",photo:null,youtube:"AAnyxoan9XI",instagram:null,description:"Frieda fusionne gospel, hip hop et chanson à texte dans une pop théâtrale et grandiloquente. Sa voix puissante et vulnérable porte des textes sur l'acceptation de soi et les injonctions sociales, dans une mise en scène scintillante et habitée.",parcours:"Formée au piano au Conservatoire dès l'enfance, elle traverse un burn-out avant de se consacrer pleinement à la scène. Sélectionnée par le dispositif Le Fair en 2025, elle a déjà partagé l'affiche de l'Afropunk Festival avec Janelle Monáe et Solange."},
+{id:"tiago-caetano",nom:"Tiago Caetano",genre:"hybrid",ville:"Rennes",meta:"Rennes · album « Eco da Baía »",date:"15 novembre 2024",photo:null,youtube:"x4y_GoV7oTM",instagram:null,description:"Tiago Caetano réinvente la MPB brésilienne en y glissant des touches d'indie pop inspirées de Beach Fossils. Le résultat est une musique douce et mélancolique, suspendue entre deux rives, deux langues et deux mémoires.",parcours:"Né à Rennes d'une mère brésilienne et d'un père portugais, il enregistre son premier album « Eco da Baía » dans la maison de ses grands-parents près de Saint-Malo, avant de le prolonger en 2025 avec une édition augmentée, « Eco da Baía (extended) »."},
+{id:"nina-versyp",nom:"Nina Versyp",genre:"hybrid",ville:"Paris",meta:"Paris · EP « Paralysed »",date:"27 février 2024",photo:null,youtube:"5gT5mSNB28I",instagram:null,description:"Nina Versyp mélange la délicatesse de la folk aux aspérités du rock dans une pop onirique et parfois vénéneuse, où une rythmique trip hop nineties peut soudain affleurer sous une guitare électrique minimaliste.",parcours:"Seule en scène avec sa guitare, elle s'entoure en studio du producteur Alexis Delong et de la harpiste Laure Brisa. Lauréate du prix Chorus et du Coup de cœur Rock en Seine 2024, elle est repérée par le dispositif Le Fair pour 2025."}
+];
+const genreLabels={pop:"Pop & Nouvelle Variété",afro:"Afro & Global Pop",dance:"Dance & Club Pop",indie:"Bedroom Pop & Indie",hybrid:"Hybrid & Future Pop"};
+const pageTitles={talents:"Artistes à découvrir",interview:"Interview",about:"À propos",partenariats:"Partenariats",contact:"Proposer un artiste",legal:"Mentions légales"};
+const nav=document.getElementById('mainNav');
+const burger=document.getElementById('burger');
+const mnav=document.getElementById('mnav');
+const progressBar=document.getElementById('progressBar');
+const articleView=document.getElementById('dynamic-article-view');
+const previewTrack=document.getElementById('preview-track');
+const loader=document.getElementById('loader');
+const searchInput=document.getElementById('searchInput');
+let currentFilter='all';
+let currentSearch='';
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const buildArtistUrl=id=>`${location.origin}/artiste/${id}`;
+const slugify=name=>String(name).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+const getThumb=t=>{
+if(t.photo)return t.photo;
+if(t.youtube)return `https://img.youtube.com/vi/${t.youtube}/hqdefault.jpg`;
+return `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360"><rect width="640" height="360" fill="#14141E"/><text x="320" y="190" font-family="sans-serif" font-size="22" fill="#5a5a66" text-anchor="middle">Visuel à venir</text></svg>')}`;
+};
+const hasVideo=t=>!!t.youtube;
+const hasInsta=t=>!!t.instagram;
+const card=t=>`<article class="card talent reveal" data-style="${t.genre}"><div class="thumb" onclick="openArticle('${t.id}')"><img src="${getThumb(t)}" loading="lazy" alt="${esc(t.nom)}">${hasVideo(t)?'<div class="play"><i>▶</i></div>':''}<span class="card-hint">Lire l'article →</span></div><div class="info"><div class="info-top"><span class="tag ${t.genre}">${genreLabels[t.genre]||t.genre}</span><span class="tag city">${esc(t.ville)}</span></div><div class="info-row"><h3 onclick="openArticle('${t.id}')">${esc(t.nom)}</h3><button class="card-share-btn" onclick="event.stopPropagation();shareCard('${t.id}','${esc(t.nom)}')" title="Partager ${esc(t.nom)}" aria-label="Partager ${esc(t.nom)}">${ICON_SHARE}</button></div></div></article>`;
+const featureBlock=t=>`<div class="feature-block"><div class="feature-grid"><div class="feature-media reveal reveal-zoom" onclick="openArticle('${t.id}')"><div class="feature-tag"><span class="dot" style="background:var(--${t.genre})"></span>${genreLabels[t.genre]||t.genre}</div><img src="${getThumb(t)}" loading="lazy" alt="${esc(t.nom)}">${hasVideo(t)?'<div class="play"><i>▶</i></div>':''}</div><div class="feature-text reveal reveal-side reveal-delay-2" onclick="openArticle('${t.id}')"><div><span class="feature-eyebrow">Dernière découverte</span><h3>${esc(t.nom)}</h3><p class="intro">${esc(t.description)}</p></div><div><div class="feature-meta"><div><span>Ville</span><span>${esc(t.ville)}</span></div><div><span>Sortie</span><span>${esc(t.date||'')}</span></div></div><div class="feature-cta">Lire le portrait<div class="circle">→</div></div></div></div></div></div>`;
+const mosaicSizes=['large','medium','small','small','medium','small','small','small','small','small','small','small','small','small'];
+const mosaicTile=(t,i)=>`<div class="mtile ${mosaicSizes[i%mosaicSizes.length]}"><span class="mtile-genre" style="background:var(--${t.genre})"></span><button class="mtile-share" onclick="event.stopPropagation();shareCard('${t.id}','${esc(t.nom)}')" title="Partager ${esc(t.nom)}" aria-label="Partager ${esc(t.nom)}">${ICON_SHARE}</button><img src="${getThumb(t)}" loading="lazy" alt="${esc(t.nom)}" onclick="openArticle('${t.id}')"><div class="mtile-overlay" onclick="openArticle('${t.id}')"><h4>${esc(t.nom)}</h4><span class="mtile-city">${genreLabels[t.genre]||t.genre}</span></div></div>`;
+const relCard=t=>`<div class="related-card" onclick="openArticle('${t.id}')"><div style="position:relative"><span style="position:absolute;top:8px;left:8px;width:7px;height:7px;border-radius:50%;background:var(--${t.genre});z-index:2"></span><img src="${getThumb(t)}" loading="lazy" alt="${esc(t.nom)}"></div><div class="rc-info"><h4>${esc(t.nom)}</h4><span>${genreLabels[t.genre]}</span></div></div>`;
+const syncBtns=f=>document.querySelectorAll('.filters button').forEach(b=>b.classList.toggle('active',b.dataset.filter===f));
+const renderPreview=()=>{if(!previewTrack)return;previewTrack.innerHTML=talents.slice(0,3).map(card).join('');requestAnimationFrame(()=>previewTrack.querySelectorAll('.reveal').forEach(e=>e.classList.add('visible')));};
+const talentFeatureEl=document.getElementById('talentFeature');
+const talentMosaicEl=document.getElementById('talentMosaic');
+const renderTalents=()=>{
+if(!talentMosaicEl)return;
+let list=currentFilter==='all'?talents:talents.filter(t=>t.genre===currentFilter);
+if(currentSearch)list=list.filter(t=>t.nom.toLowerCase().includes(currentSearch.toLowerCase())||t.ville.toLowerCase().includes(currentSearch.toLowerCase()));
+syncBtns(currentFilter);
+if(list.length===0){
+if(talentFeatureEl)talentFeatureEl.innerHTML='';
+talentMosaicEl.innerHTML='<div class="no-result-mosaic">Aucun artiste trouvé.</div>';
+return;
+}
+const [first,...rest]=list;
+if(talentFeatureEl)talentFeatureEl.innerHTML=featureBlock(first);
+talentMosaicEl.innerHTML=rest.length?`<div class="mosaic-label"><h3>Toutes les parutions</h3><span>${rest.length} autre${rest.length>1?'s':''} artiste${rest.length>1?'s':''}</span></div><div class="mosaic">${rest.map(mosaicTile).join('')}</div>`:'';
+requestAnimationFrame(()=>{
+if(talentFeatureEl)talentFeatureEl.querySelectorAll('.reveal').forEach(e=>e.classList.add('visible'));
+});
+};
+const animateStats=()=>{
+const el=document.getElementById('stat-artists');
+if(!el)return;
+const target=talents.length;
+const duration=1400;
+const start=performance.now();
+const easeOutQuart=x=>1-Math.pow(1-x,4);
+const step=now=>{
+const progress=Math.min((now-start)/duration,1);
+const eased=easeOutQuart(progress);
+el.textContent=Math.round(eased*target);
+if(progress<1)requestAnimationFrame(step);
+else el.textContent=target;
+};
+requestAnimationFrame(step);
+};
+const ICON_SHARE=`<svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>`;
+const ICON_CHECK=`<svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+let toastTimer=null;
+window.showToast=(message,icon)=>{
+let toast=document.getElementById('appToast');
+if(!toast){
+toast=document.createElement('div');
+toast.id='appToast';
+toast.className='toast';
+document.body.appendChild(toast);
+}
+toast.innerHTML=`${icon||ICON_CHECK}<span>${esc(message)}</span>`;
+clearTimeout(toastTimer);
+requestAnimationFrame(()=>toast.classList.add('show'));
+toastTimer=setTimeout(()=>toast.classList.remove('show'),2000);
+};
+const renderArticle=t=>{
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.querySelector('footer').style.display='none';
+const related=talents.filter(x=>x.genre===t.genre&&x.id!==t.id).slice(0,3);
+const relatedHTML=related.length?`<div class="related"><h3>Dans le même univers</h3><div class="related-grid">${related.map(relCard).join('')}</div></div>`:'';
+const clipHTML=hasVideo(t)
+?`<div class="clip-embed"><iframe src="https://www.youtube-nocookie.com/embed/${t.youtube}?rel=0&modestbranding=1" title="${esc(t.nom)}" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen loading="lazy"></iframe></div>`
+:`<div class="clip-soon"><span>Clip à venir</span></div>`;
+const instaHTML=hasInsta(t)
+?`<a href="${t.instagram}" target="_blank" rel="noopener">📷 Instagram</a>`
+:`<span class="soon">📷 Instagram à venir</span>`;
+articleView.innerHTML=`<section><div class="article-header"><img src="${getThumb(t)}" loading="lazy" alt="${esc(t.nom)}"><div class="overlay"><span class="tag ${t.genre}">${genreLabels[t.genre]||t.genre}</span><h1>${esc(t.nom)}</h1></div></div><div class="article-meta-panel"><div class="article-meta-row"><div><span>Ville</span><span>${esc(t.ville)}</span></div><div><span>Univers</span><span>${genreLabels[t.genre]||t.genre}</span></div><div><span>Sortie</span><span>${esc(t.date||'')}</span></div></div></div><div class="article-body"><div class="article-media"><h3 style="margin-top:0">🎵 Écouter</h3>${clipHTML}<div class="streaming-links">${instaHTML}</div><div class="share-row"><span>Partager</span><button class="share-btn" onclick="shareArticle('${t.id}','${esc(t.nom)}')" title="Partager">${ICON_SHARE}</button></div></div><div class="article-main"><p>${esc(t.description)}</p><h3>Son parcours</h3><p>${esc(t.parcours)}</p>${relatedHTML}<a class="btn line btn-back" onclick="closeArticle()">← Retour aux talents</a></div></div></section>`;
+articleView.classList.add('active');
+articleView.style.opacity='0';
+articleView.style.transform='translateY(10px)';
+requestAnimationFrame(()=>{articleView.style.opacity='1';articleView.style.transform='translateY(0)';});
+window.scrollTo({top:0,behavior:'smooth'});
+document.title=`${t.nom} — Rise Music Mag`;
+};
+window.openArticle=(id,opts)=>{
+const t=talents.find(x=>x.id===id);
+if(!t)return;
+renderArticle(t);
+if(!opts||!opts.skipPush)history.pushState({type:'artiste',id:t.id},'',`/artiste/${t.id}`);
+};
+window.shareArticle=(id,nom)=>{
+const url=buildArtistUrl(id);
+if(navigator.share){navigator.share({title:'Rise Music Mag — '+nom,text:'Découvre '+nom+' sur Rise Music Mag',url}).catch(()=>{});}
+else{navigator.clipboard.writeText(url).then(()=>showToast('Lien copié !',ICON_CHECK)).catch(()=>showToast('Impossible de copier le lien'));}
+};
+window.shareCard=(id,nom)=>{
+const url=buildArtistUrl(id);
+if(navigator.share){navigator.share({title:'Rise Music Mag — '+nom,text:'Découvre '+nom+' sur Rise Music Mag',url}).catch(()=>{});}
+else{navigator.clipboard.writeText(url).then(()=>showToast('Lien de '+nom+' copié !',ICON_CHECK)).catch(()=>showToast('Impossible de copier le lien'));}
+};
+window.closeArticle=()=>{document.getElementById('dynamic-article-view').innerHTML='';goTo('talents');};
+const renderPage=pageName=>{
+const target=document.getElementById('page-'+pageName);
+if(!target)return false;
+document.querySelectorAll('.page.active').forEach(p=>{p.style.opacity='0';p.style.transform='translateY(10px)';});
+if(articleView){articleView.style.opacity='0';articleView.style.transform='translateY(10px)';}
+setTimeout(()=>{
+document.querySelectorAll('.page').forEach(p=>{p.classList.remove('active');p.style.opacity='';p.style.transform='';});
+if(articleView){articleView.classList.remove('active');articleView.innerHTML='';articleView.style.opacity='';articleView.style.transform='';}
+document.querySelector('footer').style.display='';
+target.classList.add('active');
+target.style.opacity='0';target.style.transform='translateY(10px)';
+requestAnimationFrame(()=>{target.style.opacity='1';target.style.transform='translateY(0)';});
+burger.classList.remove('open');mnav.classList.remove('open');document.body.style.overflow='';
+if(pageName==='talents')renderTalents();
+document.querySelectorAll('.links a').forEach(a=>a.classList.remove('current'));
+const l=document.querySelector('.links a[data-go="'+pageName+'"]');
+if(l)l.classList.add('current');
+window.scrollTo({top:0,behavior:'smooth'});
+setTimeout(()=>target.querySelectorAll('.reveal').forEach(e=>e.classList.add('visible')),100);
+},200);
+document.title=pageName==='home'?'Rise Music Mag':`${pageTitles[pageName]||pageName} — Rise Music Mag`;
+return true;
+};
+window.goTo=(pageName,opts)=>{
+if(!renderPage(pageName))return;
+if(!opts||!opts.skipPush){
+const path=pageName==='home'?'/':`/${pageName}`;
+history.pushState({type:'page',page:pageName},'',path);
+}
+};
+window.filterAndGo=genre=>{currentFilter=genre;currentSearch='';if(searchInput)searchInput.value='';goTo('talents');};
+if(searchInput)searchInput.addEventListener('input',e=>{currentSearch=e.target.value;renderTalents();});
+window.addEventListener('load',()=>setTimeout(()=>loader.classList.add('hidden'),600));
+const copyYearEl=document.getElementById('copyYear');
+if(copyYearEl)copyYearEl.textContent=new Date().getFullYear();
+document.querySelectorAll('[data-go]').forEach(el=>{
+el.addEventListener('click',e=>{e.preventDefault();goTo(el.dataset.go);});
+if(el.tagName!=='A')el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();goTo(el.dataset.go);}});
+});
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
+window.addEventListener('scroll',()=>{const ws=document.body.scrollTop||document.documentElement.scrollTop;const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;progressBar.style.width=(h>0?(ws/h)*100:0)+'%';});
+burger.addEventListener('click',()=>{const open=burger.classList.toggle('open');mnav.classList.toggle('open');burger.setAttribute('aria-expanded',open?'true':'false');document.body.style.overflow=mnav.classList.contains('open')?'hidden':'';});
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');if(e.target.querySelector('#stat-artists'))animateStats();obs.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.querySelectorAll('.filters button').forEach(btn=>btn.addEventListener('click',()=>{currentFilter=btn.dataset.filter;renderTalents();}));
+document.getElementById('contactForm').addEventListener('submit',function(e){
+e.preventDefault();
+const form=this;
+const btn=form.querySelector('button[type="submit"]');
+const n=document.getElementById('artistName').value;
+btn.disabled=true;btn.textContent='Envoi en cours...';
+const data=new FormData(form);
+fetch(form.action,{method:'POST',body:data,headers:{'Accept':'application/json'}})
+.then(r=>{if(r.ok){document.getElementById('formWrap').innerHTML=`<div class="form-success"><div class="icon">🎵</div><h3>Merci !</h3><p>On a bien reçu la fiche de <strong>${esc(n)}</strong>.<br>On revient vers toi rapidement.</p></div>`;}else{alert("Une erreur est survenue. Réessaie ou écris à contact@risemusicmag.fr");btn.disabled=false;btn.textContent='Envoyer ma fiche';}})
+.catch(()=>{alert("Une erreur est survenue. Réessaie ou écris à contact@risemusicmag.fr");btn.disabled=false;btn.textContent='Envoyer ma fiche';});
+});
+renderPreview();
+renderTalents();
+document.querySelectorAll('.links a').forEach(a=>a.classList.remove('current'));
+const hl=document.querySelector('.links a[data-go="home"]');
+if(hl)hl.classList.add('current');
+const VALID_PAGES=['talents','interview','about','partenariats','contact','legal'];
+const routeFromLocation=()=>{
+const path=location.pathname.replace(/\/+$/,'')||'/';
+if(path==='/')return renderPage('home');
+const artistMatch=path.match(/^\/artiste\/([\w-]+)$/);
+if(artistMatch){
+const t=talents.find(x=>x.id===artistMatch[1]);
+if(t){renderArticle(t);return;}
+return renderPage('talents');
+}
+const pageName=path.replace(/^\//,'');
+if(VALID_PAGES.includes(pageName))return renderPage(pageName);
+return renderPage('home');
+};
+window.addEventListener('popstate',routeFromLocation);
+routeFromLocation();
+});
+</script>
+</body>
+</html>
