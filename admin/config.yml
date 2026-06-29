@@ -1,0 +1,127 @@
+site_name: Rise Music Mag
+site_url: https://risemusicmag.fr
+logo_url: https://risemusicmag.fr/images/logo.svg
+backend:
+  name: github
+  repo: franckbarbas-svg/rise-music-mag
+  branch: v2-refactor
+  auth_endpoint: api/auth
+  preview_context: deploy-preview
+  api_root: api
+
+publish_mode: editorial_workflow
+media_folder: images
+public_folder: /images
+
+collections:
+  - name: artistes
+    label: Artistes
+    folder: data
+    create: true
+    slug: "{{fields.id}}"
+    format: json
+    extension: json
+    editor:
+      preview: false
+    fields:
+      - { label: ID, name: id, widget: string }
+      - { label: Nom, name: nom, widget: string }
+      - { label: Genre, name: genre, widget: select, options: [pop, afro, dance, indie, hybrid] }
+      - { label: Ville, name: ville, widget: string }
+      - { label: Photo, name: photo, widget: image, required: false }
+      - { label: YouTube ID, name: youtube, widget: string, required: false }
+      - { label: Instagram, name: instagram, widget: string, required: false }
+      - { label: Spotify, name: spotify, widget: string, required: false }
+      - { label: Description, name: description, widget: text }
+      - { label: Biographie, name: biographie, widget: textarea }
+      - { label: Featured, name: featured, widget: boolean, default: false }
+      - { label: Verified, name: verified, widget: boolean, default: false }
+
+  - name: interviews
+    label: Interviews
+    folder: data
+    create: true
+    slug: "{{fields.id}}"
+    format: json
+    extension: json
+    fields:
+      - { label: ID, name: id, widget: string }
+      - { label: Artiste ID, name: artiste_id, widget: string }
+      - { label: Nom, name: nom, widget: string }
+      - { label: Genre, name: genre, widget: select, options: [pop, afro, dance, indie, hybrid] }
+      - { label: Date, name: date, widget: datetime }
+      - { label: Ville, name: ville, widget: string }
+      - { label: Photo, name: photo, widget: image, required: false }
+      - { label: YouTube ID, name: youtube, widget: string, required: false }
+      - { label: Instagram, name: instagram, widget: string, required: false }
+      - { label: Biographie, name: biographie, widget: textarea }
+      - { label: Questions/Réponses, name: questions, widget: list, fields: [
+          { label: Numéro, name: numero, widget: number },
+          { label: Question, name: question, widget: string },
+          { label: Réponse, name: reponse, widget: textarea }
+        ]}
+
+  - name: articles
+    label: Articles
+    folder: data
+    create: true
+    slug: "{{fields.slug}}"
+    format: json
+    extension: json
+    fields:
+      - { label: ID, name: id, widget: string }
+      - { label: Titre, name: titre, widget: string }
+      - { label: Slug, name: slug, widget: string }
+      - { label: Catégorie, name: categorie, widget: string }
+      - { label: Tags, name: tags, widget: list }
+      - { label: Auteur, name: auteur, widget: string }
+      - { label: Date, name: date, widget: datetime }
+      - { label: Image, name: image, widget: image, required: false }
+      - { label: Extrait, name: extrait, widget: text }
+      - { label: Contenu, name: contenu, widget: markdown }
+      - { label: Temps de lecture, name: tempsLecture, widget: number }
+      - { label: Featured, name: featured, widget: boolean }
+      - { label: Publié, name: published, widget: boolean }
+
+  - name: albums
+    label: Albums
+    folder: data
+    create: true
+    slug: "{{fields.id}}"
+    format: json
+    extension: json
+    fields:
+      - { label: ID, name: id, widget: string }
+      - { label: Titre, name: titre, widget: string }
+      - { label: Artiste ID, name: artiste_id, widget: string }
+      - { label: Artiste, name: artiste, widget: string }
+      - { label: Type, name: type, widget: select, options: [Album, EP, Single] }
+      - { label: Date de sortie, name: date_sortie, widget: datetime }
+      - { label: Image, name: image, widget: image, required: false }
+      - { label: Spotify, name: spotify, widget: string, required: false }
+      - { label: Apple Music, name: apple_music, widget: string, required: false }
+      - { label: Description, name: description, widget: textarea }
+
+  - name: events
+    label: Événements
+    folder: data
+    create: true
+    slug: "{{fields.id}}"
+    format: json
+    extension: json
+    fields:
+      - { label: ID, name: id, widget: string }
+      - { label: Artiste, name: artiste, widget: string }
+      - { label: Artiste ID, name: artiste_id, widget: string }
+      - { label: Titre, name: titre, widget: string }
+      - { label: Date, name: date, widget: datetime }
+      - { label: Heure, name: heure, widget: string }
+      - { label: Ville, name: ville, widget: string }
+      - { label: Salle, name: salle, widget: string }
+      - { label: Adresse, name: adresse, widget: string }
+      - { label: Image, name: image, widget: image, required: false }
+      - { label: Billetterie, name: billetterie, widget: string, required: false }
+      - { label: Description, name: description, widget: textarea }
+      - { label: Prix, name: prix, widget: string }
+      - { label: Capacité, name: capacite, widget: number }
+      - { label: Publié, name: published, widget: boolean }
