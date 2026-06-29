@@ -1,0 +1,10 @@
+[
+  {
+    "id": "partenaire-1",
+    "nom": "Spotify",
+    "logo": "/images/partenaires/spotify.svg",
+    "url": "https://spotify.com",
+    "description": "Plateforme de streaming musicale",
+    "type": "streaming"
+  }
+]
